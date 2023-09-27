@@ -4,7 +4,7 @@
 const request = require('request');
 const episodeNumber = process.argv[2];
 
-const url = `https://swapi.dev/api/films/${episodeNumber}/`;
+const url = `https://swapi-api.alx-tools.com/api/films/${episodeNumber}/`;
 
 request(url, (error, response, body) => {
   if (error) {
