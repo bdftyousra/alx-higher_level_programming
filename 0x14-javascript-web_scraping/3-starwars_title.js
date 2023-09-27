@@ -1,17 +1,15 @@
 #!/usr/bin/node
 
-// Reads and prints the title of a Star Wars movie based on an episode number
 const request = require('request');
-const episodeNumber = process.argv[2];
+const episodeNum = process.argv[2];
+const API_URL = 'https://swapi-api.hbtn.io/api/films/';
 
-const url = `https://swapi-api.alx-tools.com/api/films/${episodeNumber}/`;
-
-request(url, (error, response, body) => {
+request(API_URL + episodeNum, function (error, response, body) {
   if (error) {
-    console.error(error.message);
+    console.log(error);
+  } else if (response.statusCode === 200) {
+    console.log(JSON.parse(body).title);
   } else {
-    const data = JSON.parse(body);
-    console.log(data.title);
+    console.log('Error code: ' + response.statusCode);
   }
 });
-
